@@ -1,0 +1,18 @@
+RPI Comptroller Application File Layout
+
+For the development of the project, the ASP.NET MVC 4 framework was used. Therefore, these files are separated into different folders within the application files
+
+Model
+In the Models folder there is a file for each table that was originally included in the database design. The one exception to this rule is the CapstoneDb.cs file which associates the different tables together through their foreign keys.
+
+View
+Within the views folder the various views for each model can be found. In general each folder represents the views that directly related to a given model. For example the Voucher folder contains create, delete, details, edit, and index all which display information relating to vouchers.
+
+Controller
+While the model deals exclusively with the front end, and the model exclusively deals with the back end, the controller provides the business logic for the application. The controller handles inputs and converts it to commands for the model or view. In the Controllers folder the various files help drive the application actions as the user interacts with the application.
+
+Content
+The Content folder holds the style sheets and other related resources for the site such as the JQuery libraries.
+
+App_Data
+The MS SQL database behind the MVC application can be found in this folder in the Capstone.mdf file
