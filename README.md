@@ -1,4 +1,4 @@
-# generator-first [![Build Status](https://secure.travis-ci.org/SameerSawlaCengageLearning/generator-first.png?branch=master)](https://travis-ci.org/SameerSawlaCengageLearning/generator-first)
+# RPI Tickect Validator 
 
 > [Yeoman](http://yeoman.io) generator
 
