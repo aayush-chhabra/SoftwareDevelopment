@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='css/app.css?#{appConfig.version}')
+	body
+		block content
+
+		script(type='text/javascript').
+			window.appVersion = '#{appConfig.version}'
+		script(type='text/javascript', src='js/require.js?#{appConfig.version}')
+		script(type='text/javascript', src='js/config.js?#{appConfig.version}')
+		script(type='text/javascript', src='#{appConfig.mainFile}?#{appConfig.version}')
+
+		block scripts
