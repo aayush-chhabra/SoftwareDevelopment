@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftwareDevelopment", "Capstone\SoftwareDevelopment.csproj", "{259EC9B1-6723-4204-B758-C0B11E26977A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capstone.Tests", "Capstone.Tests\Capstone.Tests.csproj", "{ACDFF038-FD9B-4591-8C30-F653237BE6E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{259EC9B1-6723-4204-B758-C0B11E26977A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259EC9B1-6723-4204-B758-C0B11E26977A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259EC9B1-6723-4204-B758-C0B11E26977A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259EC9B1-6723-4204-B758-C0B11E26977A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACDFF038-FD9B-4591-8C30-F653237BE6E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACDFF038-FD9B-4591-8C30-F653237BE6E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACDFF038-FD9B-4591-8C30-F653237BE6E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACDFF038-FD9B-4591-8C30-F653237BE6E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Capstone\SoftwareDevelopment.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
