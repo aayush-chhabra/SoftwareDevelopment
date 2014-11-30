@@ -1,0 +1,21 @@
+	{  			
+	  	"locale_data" : 
+	  	{
+	    	"fr-FR" : {
+	      	"" : {
+	        		"domain" : "fr-FR",
+			        "lang"   : "fr",
+			        "plural_forms" : "nplurals=2; plural=(n>3);"
+		      	},
+		    "Development" : [ null, "développement"],
+	      	"I own %d house" : [null, "Je possède %d maison", "Je possède %d maisons"],
+		    "male\u0004Development" : [ null, "développement_mâle"],
+		    "female\u0004Development" :	 [ null, "développement_femelle"],   
+		    "Development" : [ null, "développement","développementes"],	
+		    "male\u0004Development" : [ null, "développement_mâle","développementes_mâle"],
+		    "female\u0004Development" :	 [ null, "développement_femelle","développementes_femelle"]   
+	  		}
+	  	},
+	  "domain" : "fr-FR"
+		
+	}
