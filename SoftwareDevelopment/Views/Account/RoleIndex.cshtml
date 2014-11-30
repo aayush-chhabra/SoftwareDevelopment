@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Credential Management";
+}
+
+<div>
+    @Html.ActionLink("Create New Credential", "RoleCreate") | @Html.ActionLink("Assign User Credentials", "RoleAddToUser")
+    <h2>List Credentials</h2>
+    <div class="table-responsive">
+        <table class="table">
+
+
+            @foreach (string s in Model)
+            {
+                <tr>
+                    <td>
+                        @s
+                    </td>
+                    <td>
+                        <span onclick="return confirm('Are you sure to delete?')">
+                            <a href="/Account/RoleDelete?RoleName=@s" class="delLink">Delete</a>
+                        </span>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

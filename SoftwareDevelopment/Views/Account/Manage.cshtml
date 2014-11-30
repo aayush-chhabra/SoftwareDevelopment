@@ -1,0 +1,35 @@
+﻿@model Capstone.Models.LocalPasswordModel
+
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+<h2>My Credentials</h2>
+@{
+    var roles = Roles.GetRolesForUser();
+                        foreach (var role in roles)
+                        {
+                                    @role.ToString();
+                                    <br />
+                        }
+    }
+
+@if (ViewBag.HasLocalPassword)
+{
+    @Html.Partial("_ChangePasswordPartial")
+}
+else
+{ 
+    @Html.Partial("_SetPasswordPartial")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Assign User Credentials";
+}
+<div>
+    @Html.ActionLink("Create New Credential", "RoleCreate") | @Html.ActionLink("Credential Management", "RoleIndex")
+
+    <h2>Assign User Credentials</h2>
+
+    @using (Html.BeginForm("RoleAddToUser", "Account"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="message-success">@ViewBag.ResultMessage</div>
+        <p>
+            Username : @Html.DropDownList("UserName", ViewBag.UserName as SelectList)
+            Role Name: @Html.DropDownList("RoleName", ViewBag.Roles as SelectList)
+
+        </p>
+    
+        <input type="submit" value="Save" />
+    }
+
+
+
+    <div class="hr"></div>
+    
+</div>

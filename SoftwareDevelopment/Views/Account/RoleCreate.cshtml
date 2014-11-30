@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Role Create";
+}
+
+
+ @Html.ActionLink("Credentials Management", "RoleIndex") | @Html.ActionLink("Assign User Credentials", "RoleAddToUser")
+<h2>Role Create</h2>
+<div>
+@using(Html.BeginForm()){
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div>Credential Title</div>
+    <p>
+        @Html.TextBox("RoleName")
+    </p>
+    <input type="submit" value="Save" />
+}
+</div>
