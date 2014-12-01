@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Capstone.Models.Project>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Service Name</th>
+            <th>Project Name</th>
+            <th>Vouchers</th>
+            <th>Remaining Quantity</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            foreach (var v in item.Vouchers)
+            {
+
+                if (v.DetailedService.ServiceProvider.Id.Equals(Membership.GetUser().ProviderUserKey))
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => v.DetailedService.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @v.StartDate.ToShortDateString() - @v.EndDate.ToShortDateString()
+                </td>
+                <td>
+                    @{
+                        int amountUsed = 0;
+
+                        foreach (var ve in v.VoucherEvents)
+                        {
+                            amountUsed += ve.AmountUsed;
+                        }
+
+                        int remainingQuantity = v.PermittedQuantity - amountUsed;
+
+                        @remainingQuantity.ToString()
+                    }
+
+                </td>
+            </tr>
+                }
+            }
+        }
+
+    </table>
+</div>

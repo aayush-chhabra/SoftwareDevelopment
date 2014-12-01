@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Capstone.Models.Project>
+
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>PI</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>Vouchers</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Status.ToString().Equals("approved") && item.UserId.Equals(Membership.GetUser().ProviderUserKey))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @foreach (var v in item.Vouchers)
+                    {
+                        <p><strong>@v.DetailedService.Name.ToString()</strong></p>
+                        <p>Date: @v.StartDate.ToShortDateString() - @v.EndDate.ToShortDateString()</p>
+              
+                        int amountUsed = 0;
+
+                        foreach (var ve in v.VoucherEvents)
+                        {
+                            amountUsed += ve.AmountUsed;
+                        }
+
+                        int remainingQuantity = v.PermittedQuantity - amountUsed;
+
+                        <p>Remaining Quantity: @remainingQuantity.ToString()</p>
+                    }
+
+                </td>
+            </tr>
+            }
+        }
+
+    </table>
+</div>

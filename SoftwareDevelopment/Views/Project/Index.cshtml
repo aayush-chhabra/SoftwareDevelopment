@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Capstone.Models.Project>
+
+@{
+    ViewBag.Title = "Project Management";
+}
+
+<h2>Project Management</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>PI</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th></th>
+        </tr>
+
+        @{
+            if (HttpContext.Current.User.IsInRole("Investigator"))
+            {
+                foreach (var item in Model)
+                {
+                    if (item.UserId == (int)Membership.GetUser().ProviderUserKey)
+                    {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td></td>
+            </tr>
+                    }
+                }
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+                }
+
+            }
+        }
+    </table>
+</div>
