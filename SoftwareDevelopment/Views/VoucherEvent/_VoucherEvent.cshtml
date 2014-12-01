@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Capstone.Models.VoucherEvent>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountUsed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeUsed)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountUsed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeUsed)
+                </td>
+                <td></td>
+            </tr>
+        }
+    </table>
+</div>

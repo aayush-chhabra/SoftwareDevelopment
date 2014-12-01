@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Capstone.Models.VoucherEvent>
+
+@{
+    ViewBag.Title = "Event Management";
+}
+
+<h2>Usage History</h2>
+
+<p>
+    @Html.ActionLink("Use A Service", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Project</th>
+            <th>PI</th>
+            <th>Detailed Service Used</th>
+            <th>Service Provider</th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountUsed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeUsed)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (HttpContext.Current.User.IsInRole("Service Provider") && item.Voucher.DetailedService.ServiceProvider.Id.Equals(Membership.GetUser().ProviderUserKey))
+            { 
+                <tr>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.Project.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.Project.User.FullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.DetailedService.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.DetailedService.ServiceProvider.FullName)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountUsed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeUsed)
+                </td>
+            </tr>
+            }
+            else if (HttpContext.Current.User.IsInRole("System Administrator"))
+            {
+                <tr>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.Project.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.Project.User.FullName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.DetailedService.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Voucher.DetailedService.ServiceProvider.FullName)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountUsed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeUsed)
+                </td>
+            </tr>
+            }
+        }
+
+    </table>
+</div>

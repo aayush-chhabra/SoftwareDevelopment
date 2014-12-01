@@ -1,0 +1,29 @@
+﻿@model Capstone.Models.VoucherEvent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Event Details</h2>
+
+<fieldset>
+    <legend>VoucherEvent</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AmountUsed)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AmountUsed)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeUsed)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeUsed)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Capstone.Models.Voucher>
+
+@{
+    ViewBag.Title = "Voucher Management";
+}
+
+<h2>Voucher Management</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PermittedQuantity)
+            </th>
+            <th>Remaining Quantity</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th>Associate Detailed Service</th>
+            <th>Associate Project</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (HttpContext.Current.User.IsInRole("Service Provider") && item.DetailedService.ServiceProvider.Id.Equals(Membership.GetUser().ProviderUserKey))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PermittedQuantity)
+                </td>
+                <td>
+                    @{
+                int amountUsed = 0;
+
+                foreach (var ve in item.VoucherEvents)
+                {
+                    amountUsed += ve.AmountUsed;
+                }
+
+                int remainingQuantity = item.PermittedQuantity - amountUsed;
+            
+                        @remainingQuantity.ToString() 
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DetailedService.Name)
+                    <br />
+                    Provider: @Html.DisplayFor(modelItem => item.DetailedService.ServiceProvider.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Name)
+                    <br />
+                    PI: @Html.DisplayFor(modelItem => item.Project.User.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            }
+            else if( HttpContext.Current.User.IsInRole("Administrator") || HttpContext.Current.User.IsInRole("Conduits Administrator"))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PermittedQuantity)
+                </td>
+                <td>
+                    @{
+                int amountUsed = 0;
+
+                foreach (var ve in item.VoucherEvents)
+                {
+                    amountUsed += ve.AmountUsed;
+                }
+
+                int remainingQuantity = item.PermittedQuantity - amountUsed;
+            
+                        @remainingQuantity.ToString() 
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DetailedService.Name)
+                    <br />
+                    Provider: @Html.DisplayFor(modelItem => item.DetailedService.ServiceProvider.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Name)
+                    <br />
+                    PI: @Html.DisplayFor(modelItem => item.Project.User.FullName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            }
+        }
+
+    </table>
+</div>

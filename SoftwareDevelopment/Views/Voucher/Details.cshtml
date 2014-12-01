@@ -1,0 +1,75 @@
+﻿@model Capstone.Models.Voucher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Voucher</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StartDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StartDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EndDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EndDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PermittedQuantity)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PermittedQuantity)
+    </div>
+
+    <div class="display-label">Remaining Quantity</div>
+    <div class="display-field">
+        @{
+            int amountUsed = 0;
+            
+            foreach (var ve in Model.VoucherEvents)
+            {
+                amountUsed += ve.AmountUsed;
+            }
+            
+            int remainingQuantity = Model.PermittedQuantity - amountUsed;
+            
+            @remainingQuantity.ToString() 
+        }
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Status)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Status)
+    </div>
+    
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Project)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Project.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DetailedService)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DetailedService.Name)
+    </div>
+</fieldset>
+<h2>Usage History</h2>
+@Html.Partial("../VoucherEvent/_VoucherEvent", Model.VoucherEvents)
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
