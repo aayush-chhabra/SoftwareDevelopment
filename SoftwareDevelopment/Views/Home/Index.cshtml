@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Capstone.Models.Project>
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+@if (HttpContext.Current.User.IsInRole("Administrator"))
+{
+    <h2>Quick Access</h2>
+    <ul>
+        <li>@Html.ActionLink("Manage Projects", "Index", "Project")</li>
+        <li>@Html.ActionLink("Use A Service", "Index", "VoucherEvent")</li>
+        <li>@Html.ActionLink("Credentials Management", "RoleIndex", "Account")</li>
+    </ul>
+    <br />
+    <br />    
+    <h2>Requested Projects</h2>
+    @Html.Partial("../Project/_ApproveProject", Model)
+}
+else if (HttpContext.Current.User.IsInRole("Service Provider"))
+{
+    <h2>My Service In Use</h2>
+    @Html.Partial("../Project/_MyServiceWithProjects", Model)
+}
+else if (HttpContext.Current.User.IsInRole("Conduits Administrator"))
+{
+    @*<h2>Content Pending</h2>*@
+    @Html.ActionLink("Create New Voucher", "Create", "Voucher")
+}
+else if (HttpContext.Current.User.IsInRole("Investigator"))
+{
+    <h2>My Active Projects with Vouchers</h2>
+    @Html.Partial("../Project/_MyActiveProject", Model)
+}
+
+<br /><br />
+@*@foreach (var item in Model)
+{
+    <div>
+        <p>@item.Name</p>
+    </div>
+}*@
+<h2>For Demo Purpose Only:</h2>
+<p>System Administrator: Daniel Zhao</p>
+<p>Investigator: Julio Ramírez, julioramirez@msh.org</p>
+<p>Conduits Administrator: Ebe Rodriguez, eberodriguez@msh.org</p>
+<p>Service Provider: Pilar Maria Gutiérrez, pilarmaria@msh.org</p>
