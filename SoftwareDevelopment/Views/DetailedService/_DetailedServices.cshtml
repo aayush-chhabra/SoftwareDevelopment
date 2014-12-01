@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Capstone.Models.DetailedService>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitOfMeasurement)
+            </th>
+            <th>Service Provider</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (HttpContext.Current.User.IsInRole("Service Provider") && item.ServiceProvider.Id.Equals(Membership.GetUser().ProviderUserKey))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitOfMeasurement)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ServiceProvider.FullName)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            }
+            else if (HttpContext.Current.User.IsInRole("Administrator"))
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UnitOfMeasurement)
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.ServiceProvider.FullName)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+            }
+        }
+
+    </table>
+</div>

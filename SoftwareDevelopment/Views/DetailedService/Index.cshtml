@@ -1,0 +1,13 @@
+﻿@model Capstone.Models.ServiceArea
+
+@{
+    ViewBag.Title = "Detailed Services";
+}
+
+<h2>Detailed Services for @Model.Name</h2>
+
+@Html.Partial("_DetailedServices", Model.DetailedServices)
+
+<p>
+    @Html.ActionLink("Create New Detailed Service", "Create", new { serviceAreaId = Model.Id })
+</p>
